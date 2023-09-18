@@ -1,14 +1,21 @@
-%global package_speccommit 7241713e2285e29dfb1059b42070635a26477801
-%global package_srccommit v2.8.74
+# XCP-ng comment:
+# XenServer forked v2.8.71-9 from CentOS 7, then started incrementing the
+# version numbers, based on their own internal tarball releases.
+# This is not a packaging practice that we want to follow at XCP-ng.
+# A package should either follow upstream versioning, or be renamed
+# to indicate that it is a fork, with its own releases.
+# So we'll still version it as 2.8.71 for now.
+%define xs_version 2.8.74
 
 Summary: A set of system configuration and setup files
 Name: setup
-Version: 2.8.74
-Release: 1%{?xsrel}%{?dist}
+Version: 2.8.71
+Release: 9.1%{?dist}
 License: Public Domain
 Group: System Environment/Base
 URL: https://pagure.io/setup/
-Source0: setup-2.8.74.tar.gz
+# This is actually 2.8.71 with CentOS patches applied, repackaged and modified by XenServer
+Source0: setup-%{xs_version}.tar.gz
 BuildArch: noarch
 BuildRequires: bash perl
 #require system release for saner dependency order
@@ -21,7 +28,7 @@ The setup package contains a set of important system configuration and
 setup files, such as passwd, group, and profile.
 
 %prep
-%autosetup -p1 -n %{name}-%{version}
+%autosetup -p1 -n %{name}-%{xs_version}
 
 ./shadowconvert.sh
 
@@ -192,20 +199,18 @@ end
 %ghost %verify(not md5 size mtime) %config(noreplace,missingok) /etc/fstab
 
 %changelog
-* Mon Apr 03 2023 Deli Zhang <dzhang@tibco.com> - 2.8.74-1
-- CP-42642: Add certusers group
-
-* Fri Mar 31 2023 Ming Lu <ming.lu@cloud.com> - 2.8.73-1
-- CP-42024: Add telemetry user and group
-
-* Wed Mar 29 2023 Tim Smith <tim.smith@citrix.com> - 2.8.72-2
-- CP-42509 Merge new passwd and group files on package update
-
-* Fri Mar 10 2023 Tim Smith <tim.smith@citrix.com> - 2.8.72-1
-- Rebuild and move sources
-
-* Tue Mar 07 2023 Deli Zhang <dzhang@tibco.com> - 2.8.71-10
-- CP-41888: Add nagios and nrpe users/groups
-
-* Tue Mar 07 2023 Deli Zhang <dzhang@tibco.com> - 2.8.71-9
-- CP-41888: Import initial package
+* Tue Jun 04 2024 Samuel Verschelde <stormi-xcp@ylix.fr> - WIP - 2.8.71-9.1
+- Rebase on XenServer's 2.8.74-1, but keep versioning consistent with CentOS 7
+- *** XenServer changelog ***
+- * Mon Apr 03 2023 Deli Zhang <dzhang@tibco.com> - 2.8.74-1
+- - CP-42642: Add certusers group
+- * Fri Mar 31 2023 Ming Lu <ming.lu@cloud.com> - 2.8.73-1
+- - CP-42024: Add telemetry user and group
+- * Wed Mar 29 2023 Tim Smith <tim.smith@citrix.com> - 2.8.72-2
+- - CP-42509 Merge new passwd and group files on package update
+- * Fri Mar 10 2023 Tim Smith <tim.smith@citrix.com> - 2.8.72-1
+- - Rebuild and move sources
+- * Tue Mar 07 2023 Deli Zhang <dzhang@tibco.com> - 2.8.71-10
+- - CP-41888: Add nagios and nrpe users/groups
+- * Tue Mar 07 2023 Deli Zhang <dzhang@tibco.com> - 2.8.71-9
+- - CP-41888: Import initial package
