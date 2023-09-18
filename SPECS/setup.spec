@@ -1,6 +1,10 @@
 %global package_speccommit 7241713e2285e29dfb1059b42070635a26477801
 %global package_srccommit v2.8.74
 
+# XCP-ng comment: the Version here doesn't match an actual upstream release of `setup`
+# It looks like the package was forked at version v2.8.71-9 from CentOS 7, then got new
+# version numbers based on internal releases at XenServer.
+
 Summary: A set of system configuration and setup files
 Name: setup
 Version: 2.8.74
