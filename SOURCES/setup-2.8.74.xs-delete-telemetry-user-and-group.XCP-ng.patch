@@ -1,0 +1,28 @@
+diff -u a/group b/group
+--- a/group	2024-06-04 15:37:34.933736408 +0000
++++ b/group	2024-06-04 15:47:33.679584871 +0000
+@@ -25,5 +25,4 @@
+ users::100:
+ nagios::201:nrpe
+ nrpe::202:
+-telemetry::203:
+ certusers::204:nrpe
+diff -u a/passwd b/passwd
+--- a/passwd	2024-06-04 15:37:34.933736408 +0000
++++ b/passwd	2024-06-04 15:47:51.638670312 +0000
+@@ -13,4 +13,3 @@
+ nobody:*:99:99:Nobody:/:/sbin/nologin
+ nagios:*:201:201::/var/spool/nagios:/sbin/nologin
+ nrpe:*:202:202:NRPE user for the NRPE service:/var/run/nrpe:/sbin/nologin
+-telemetry:*:203:203:User for telemetry data collection:/var/telemetry:/sbin/nologin
+diff -u a/uidgid b/uidgid
+--- a/uidgid	2023-04-17 14:12:55.000000000 +0000
++++ b/uidgid	2024-06-04 15:48:13.790775248 +0000
+@@ -165,7 +165,6 @@
+ listar	?	?	?		?	listar
+ ngios	201	201	/var/spool/nagios	/sbin/nologin	setup
+ nrpe	202	202	/var/run/nrpe	/sbin/nologin	setup
+-telemetry	203	203	/var/telemetry	/sbin/nologin	setup
+ certusers	-	204	-	-	setup
+ nfsnobody	65534	65534	/var/lib/nfs		/sbin/nologin	nfs-utils
+ 

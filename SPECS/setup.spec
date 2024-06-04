@@ -16,6 +16,10 @@ Group: System Environment/Base
 URL: https://pagure.io/setup/
 # This is actually 2.8.71 with CentOS patches applied, repackaged and modified by XenServer
 Source0: setup-%{xs_version}.tar.gz
+
+# XCP-ng patches
+Patch1000: setup-2.8.74.xs-delete-telemetry-user-and-group.XCP-ng.patch
+
 BuildArch: noarch
 BuildRequires: bash perl
 #require system release for saner dependency order
@@ -199,9 +203,10 @@ end
 %ghost %verify(not md5 size mtime) %config(noreplace,missingok) /etc/fstab
 
 %changelog
-* Tue Jun 04 2024 Samuel Verschelde <stormi-xcp@ylix.fr> - WIP - 2.8.71-9.1
+* Tue Jun 04 2024 Samuel Verschelde <stormi-xcp@ylix.fr> - 2.8.71-9.1
 - Rebase on XenServer's 2.8.74-1, but keep versioning consistent with CentOS 7
 - Restore upstream CentOS changelog, that had been deleted by XenServer
+- Add setup-2.8.74-delete-telemetry-user-and-group.XCP-ng.patch
 - *** XenServer changelog ***
 - * Mon Apr 03 2023 Deli Zhang <dzhang@tibco.com> - 2.8.74-1
 - - CP-42642: Add certusers group
