@@ -10,7 +10,7 @@
 Summary: A set of system configuration and setup files
 Name: setup
 Version: 2.8.71
-Release: 9.1%{?dist}
+Release: 9.2%{?dist}
 License: Public Domain
 Group: System Environment/Base
 URL: https://pagure.io/setup/
@@ -19,6 +19,7 @@ Source0: setup-%{xs_version}.tar.gz
 
 # XCP-ng patches
 Patch1000: setup-2.8.74.xs-delete-telemetry-user-and-group.XCP-ng.patch
+Patch1001: setup-2.8.71-CVE-2018-1113.patch
 
 BuildArch: noarch
 BuildRequires: bash perl
@@ -203,6 +204,9 @@ end
 %ghost %verify(not md5 size mtime) %config(noreplace,missingok) /etc/fstab
 
 %changelog
+* Wed Nov 20 2024 Lucas Ravagnier <lucas.ravagnier@vates.tech> - 2.8.71-9.2
+- Import from 2.8.71-10 fix for CVE-2018-1113
+
 * Tue Jun 04 2024 Samuel Verschelde <stormi-xcp@ylix.fr> - 2.8.71-9.1
 - Rebase on XenServer's 2.8.74-1, but keep versioning consistent with CentOS 7
 - Restore upstream CentOS changelog, that had been deleted by XenServer
